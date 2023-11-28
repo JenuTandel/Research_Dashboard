@@ -1,0 +1,20 @@
+@mixin transition($second) {
+    transition: $second ease-in-out;
+}
+
+@mixin card-bg-color($bg-color) {
+    background-color: $bg-color;
+}
+
+@mixin flex-center{
+    display: flex;
+    align-items: center;
+}
+
+@mixin border-radius($border-radius:50%){
+    border-radius: $border-radius;
+}
+
+@mixin flex($grow:0, $shrink:0, $width){
+    flex: $grow $shrink $width;
+}

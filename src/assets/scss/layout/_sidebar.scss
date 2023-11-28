@@ -1,0 +1,59 @@
+/* Sidebar */
+
+.sidebar {
+    flex: 0 0 $sidebar-expand-width;
+    width: $sidebar-expand-width;
+    transform: translateX(0);
+    @include transition(.35s);
+    border-right: 1px solid $border-color;
+    background-color: #fff;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 16px $sidebar-margin-x;
+    @include transition(.25s);
+
+    &:hover,
+    &.active {
+        color: $primary;
+        background-color: rgba($primary, 0.1);
+
+        .icon,
+        .nav-text {
+            color: $primary;
+        }
+    }
+
+    .icon {
+        @include transition(.25s);
+        cursor: pointer;
+    }
+
+    .nav-text {
+        margin-left: 20px;
+    }
+}
+
+#toggleSidebar {
+    display: none;
+
+    &:checked {
+        +.sidebar {
+            width: 0;
+            flex: 0 0 0;
+            transform: translateX(-300px);
+        }
+    }
+}
+
+.sidebarOpen {
+    transform: translateX(-300px);
+}
+
+.sidebarClose {
+    transform: translateX(0px);
+}
+
+/* End :Sidebar */

@@ -1,0 +1,38 @@
+/* Graph section */
+.graph-wrapper {
+    background-color: $white;
+    margin-left: 20px;
+    width: 30%;
+    padding: 10px;
+    border-radius: $border-radius-10;
+
+    a,
+    p {
+        font-size: 12px;
+    }
+
+    h4,
+    a {
+        padding-top: 15px;
+    }
+}
+
+.sqt {
+    width: 240px;
+}
+
+.square-g {
+    height: 16px;
+    width: 16px;
+    background-color: #83bcbd;
+}
+
+.square-o {
+    height: 16px;
+    width: 16px;
+    background-color: #fe764b;
+}
+
+.image-graph-wrapper {
+    width: 100%;
+}

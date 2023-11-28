@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+.icon {
+    font-size: 20px;
+    color: #abb1be;
+    transition: color .25s;
+
+    &:hover {
+        color: $primary;
+    }
+}

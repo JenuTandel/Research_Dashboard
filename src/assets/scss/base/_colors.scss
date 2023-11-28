@@ -1,0 +1,19 @@
+//colors variables
+$primary: #101125;
+$secondary: #ff840d;
+$light: #353875;
+$danger: rgb(237, 125, 125);
+$info: #e7e7e9;
+$success: green;
+//nav
+$nav-link-color: white;
+$nav-link-hover-color: $secondary;
+
+$theme-color: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "danger": $danger,
+    "light": $light,
+    "info":$info,
+    "success":$success
+);

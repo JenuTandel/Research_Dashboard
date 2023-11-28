@@ -1,0 +1,96 @@
+/* start :Header */
+header {
+    height: $header-height;
+    border-bottom: 1px solid $border-color;
+    background-color: $primary;
+
+    & .icon {
+        color: $header-icon-color;
+        margin-left: $header-margin-x;
+    }
+}
+
+.search-bar-wrapper {
+    margin-left: 60px;
+    background-color: $search-bar-bgcolor;
+    @include flex-center;
+    font-weight: $font-weight-light;
+    font-size: $font-size;
+
+    .icon {
+        margin-left: 12px;
+        font-size: $font-size;
+        color: $primary !important;
+    }
+
+    #searchBar {
+        all: unset;
+        padding: 0 20px;
+        color: #abb1be;
+        width: 240px;
+    }
+}
+
+// .btn {
+//     all: unset;
+//     padding: 8px 16px;
+//     font-size: $font-size;
+//     cursor: pointer;
+
+
+//     &-primary {
+//         background-color: $white;
+//         color: $primary;
+//     }
+// }
+
+.action-bar {
+    margin-right: $header-margin-x;
+
+
+    .notification {
+        position: relative;
+        padding: 6px;
+
+        &::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            content: '';
+            height: 6px;
+            width: 6px;
+            background: red;
+            @include border-radius();
+        }
+    }
+}
+
+// .dropdown {
+//     cursor: pointer;
+
+.profile-wrapper {
+    height: 40px;
+    width: 40px;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// }
+
+/* End :Header */
+
+main {
+    padding: $header-margin-x;
+    background-color: #f8f8f8;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+
+.main-wrapper {
+    position: relative;
+}

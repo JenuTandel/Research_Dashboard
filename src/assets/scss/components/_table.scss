@@ -1,0 +1,56 @@
+/* Table: start */
+.row1 {
+    display: flex;
+    margin-bottom: 30px;
+    width: 100%
+}
+
+.table-wrapper {
+    // padding: 0px $table-margin-x;
+    width: 70%;
+    background-color: $white;
+    border-radius: $border-radius-10;
+}
+
+table {
+    font-family: $font-family;
+    border-spacing: 0px 10px;
+    // border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background-color: $primary;
+    font-weight: $font-weight-semibold;
+
+    th {
+        padding: 15px;
+        color: $white;
+    }
+}
+
+tbody {
+    text-align: center;
+
+    tr:nth-child(even) {
+        background-color: lighten($color: $primary, $amount: 50%);
+    }
+
+    tr:nth-child(odd) {
+        background-color: lighten($color: $primary, $amount: 70%);
+    }
+
+    td {
+        padding: 10px;
+    }
+}
+
+.product-wrapper>p {
+    margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* Table: end */
