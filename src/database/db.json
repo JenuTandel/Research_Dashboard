@@ -1,0 +1,9 @@
+{
+    "databaseList":[{
+        "id":1,
+        "databaseName": "ReinForce learning",
+        "databaseDetails":"It includes the database of schools.",
+        "date":123455,
+        "file":"sample"
+    }]
+}

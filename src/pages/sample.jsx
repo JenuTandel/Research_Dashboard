@@ -8,33 +8,22 @@ const AddDatabaseForm = ({ show, handleClose }) => {
     today.getMonth() + 1
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
   const initialValues = {
-    datasetName: "",
-    datasetDetails: "",
-    date: formattedToday,
+    databaseName: "",
+    databaseDetails: "",
+    date: formattedToday, // Initialize date with today's date
     csvFile: "",
   };
-
   const validationSchema = Yup.object().shape({
-    datasetName: Yup.string().required("Email is required"),
-    datasetDetails: Yup.string().required("Password is required"),
+    databaseName: Yup.string().required("Database Name is required"),
+    databaseDetails: Yup.string().required("Detail is required"),
+    csvFile: Yup.string().required("File is required"),
   });
-  //   const initialValues = {
-  //     databaseName: "",
-  //     databaseDetails: "",
-  //     date: formattedToday, // Initialize date with today's date
-  //     csvFile: "",
-  //   };
-  //   const validationSchema = Yup.object().shape({
-  //     databaseName: Yup.string().required("Database Name is required"),
-  //     databaseDetails: Yup.string().required("Detail is required"),
-  //     csvFile: Yup.string().required("File is required"),
-  //   });
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
       const csvContent = e.target.result;
-      console.log(csvContent);
+      //   console.log(csvContent);
     };
     reader.readAsText(file);
   };
@@ -72,62 +61,68 @@ const AddDatabaseForm = ({ show, handleClose }) => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              <Form className="w-75 border border-1 rounded-2 p-4">
+              <Form className="w-100 border border-1 rounded-2 p-4">
                 <div className="mb-4 ">
-                  {/* <label htmlFor="email" className='m-2'>Email</label> */}
                   <Field
                     type="text"
-                    id="datasetName"
-                    name="datasetName"
-                    className="form-control rounded-2 "
-                    placeholder="datasetName "
+                    id="databaseName"
+                    name="databaseName"
+                    className="form-control rounded-2"
+                    placeholder="Database name"
                   />
 
                   <ErrorMessage
-                    name="datasetName"
-                    component="div"
-                    className="error-message text-danger text-start"
-                  />
-                </div>
-                <div className="mb-4">
-                  {/* <label htmlFor="password" className='m-2'>Password</label> */}
-
-                  <Field
-                    type="text"
-                    id="datasetDetails"
-                    name="datasetDetails"
-                    className="form-control rounded-2  "
-                    placeholder="datasetDetails"
-                  />
-                  <ErrorMessage
-                    name="datasetDetails"
+                    name="databaseName"
                     component="div"
                     className="error-message text-danger text-start"
                   />
                 </div>
                 <div className="mb-4 ">
+                  <Field
+                    type="text"
+                    id="databaseDetails"
+                    name="databaseDetails"
+                    className="form-control rounded-2"
+                    placeholder="Database details"
+                  />
+
+                  <ErrorMessage
+                    name="databaseDetails"
+                    component="div"
+                    className="error-message text-danger text-start"
+                  />
+                </div>
+                {/* <div className="mb-4 ">
                   <Field
                     type="date"
                     className="form-control rounded-2"
                     id="date"
                     name="date"
                   />
-                </div>
-                <div className="mb-4 ">
-                  <input
+                </div> */}
+                {/* <div className="mb-4 ">
+                  <Field
                     type="file"
                     id="csvFile"
                     name="csvFile"
                     accept=".csv"
                     onChange={handleFileUpload}
                   />
-                </div>
-                <div className=" my-4">
+                </div> */}
+                <div className="modal-footer">
+                  {/* <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onClick={handleClose}
+                  >
+                    Close
+                  </button> */}
                   <button
                     type="submit"
                     className="bg-secondary rounded-2 w-50 border-0 text-white p-2"
                   >
-                    Sign in
+                    Submit
                   </button>
                 </div>
               </Form>
