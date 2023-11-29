@@ -1,9 +1,18 @@
 {
-    "databaseList":[{
-        "id":1,
-        "databaseName": "ReinForce learning",
-        "databaseDetails":"It includes the database of schools.",
-        "date":123455,
-        "file":"sample"
-    }]
+  "databaseList": [
+    {
+      "id": 1,
+      "datasetName": "ReinForce learning",
+      "datasetDetails": "It includes the database of schools.",
+      "date": 123455,
+      "file": "sample"
+    },
+    {
+      "datasetName": "Sample",
+      "datasetDetails": "Sample",
+      "date": "2023-11-28",
+      "csvFile": "",
+      "id": 2
+    }
+  ]
 }

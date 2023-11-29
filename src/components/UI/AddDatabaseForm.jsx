@@ -45,7 +45,7 @@ const AddDatabaseForm = ({ show, handleClose }) => {
     // const data = {
     //   ...values,
     // };
-    // postDatabase(values);
+    postDatabase(values);
   };
   return (
     <div

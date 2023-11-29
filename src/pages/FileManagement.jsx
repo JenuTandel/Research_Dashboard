@@ -13,8 +13,8 @@ export const FileManagement = () => {
   const tableData = database?.map((data, index) => (
     <tr key={data.id}>
       <td>{index + 1}</td>
-      <td>{data.databaseName}</td>
-      <td>{data.databaseDetails}</td>
+      <td>{data.datasetName}</td>
+      <td>{data.datasetDetails}</td>
       <td>{data.date}</td>
       <td className="text-nowrap">
         <button type="button" className="btn btn-success me-2">
