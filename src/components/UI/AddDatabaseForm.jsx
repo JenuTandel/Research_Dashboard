@@ -17,6 +17,13 @@ const AddDatabaseForm = ({ show, handleClose }) => {
   const validationSchema = Yup.object().shape({
     datasetName: Yup.string().required("Email is required"),
     datasetDetails: Yup.string().required("Password is required"),
+    csvFile: Yup.object()
+      .required("CSV file is required")
+      .test(
+        "fileType",
+        "Only CSV files are allowed",
+        (value) => value && value[0].type === "text/csv"
+      ),
   });
   //   const initialValues = {
   //     databaseName: "",
@@ -54,10 +61,10 @@ const AddDatabaseForm = ({ show, handleClose }) => {
       role="dialog"
       style={{ display: show ? "block" : "none" }}
     >
-      <div className="modal-dialog">
-        <div className="modal-content">
+      <div className="modal-dialog d-flex align-items-center h-100">
+        <div className="modal-content shadow">
           <div className="modal-header">
-            <h5 className="modal-title">Add Database</h5>
+            <h5 className="modal-title">Add Dataset</h5>
             <button
               type="button"
               className="btn-close"
@@ -72,7 +79,7 @@ const AddDatabaseForm = ({ show, handleClose }) => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              <Form className="w-75 border border-1 rounded-2 p-4">
+              <Form className="w-100 border border-1 rounded-2 p-4">
                 <div className="mb-4 ">
                   {/* <label htmlFor="email" className='m-2'>Email</label> */}
                   <Field
@@ -80,7 +87,7 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                     id="datasetName"
                     name="datasetName"
                     className="form-control rounded-2 "
-                    placeholder="datasetName "
+                    placeholder="Dataset Name "
                   />
 
                   <ErrorMessage
@@ -97,7 +104,7 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                     id="datasetDetails"
                     name="datasetDetails"
                     className="form-control rounded-2  "
-                    placeholder="datasetDetails"
+                    placeholder="Dataset Details"
                   />
                   <ErrorMessage
                     name="datasetDetails"
@@ -113,7 +120,10 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                     name="date"
                   />
                 </div>
-                <div className="mb-4 ">
+                <div className="mb-4 text-start">
+                  <label name="csvfile" className="mb-2 fw-bold">
+                    Upload dataset .csv file
+                  </label>
                   <input
                     type="file"
                     id="csvFile"
@@ -122,12 +132,12 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                     onChange={handleFileUpload}
                   />
                 </div>
-                <div className=" my-4">
+                <div>
                   <button
                     type="submit"
-                    className="bg-secondary rounded-2 w-50 border-0 text-white p-2"
+                    className="bg-primary rounded-2 border-0 text-white py-2 px-4"
                   >
-                    Sign in
+                    Submit
                   </button>
                 </div>
               </Form>
