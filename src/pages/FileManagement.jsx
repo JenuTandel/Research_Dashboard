@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useDatabase from "../hooks/useDatabase";
 import AddDatabaseForm from "../components/UI/AddDatabaseForm";
 import Button from "../components/UI/Button";
+import useSearch from "../hooks/useSearch";
+import SearchBox from "../components/UI/SearchBox";
 
 export const FileManagement = () => {
   const [showModal, setShowModal] = useState(false);
+  const [filterData, setFilterData] = useState();
+
   const database = useDatabase();
+
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
+  const handleSearch = (search) => {
+    const filterSearchData = useSearch(database, search);
+    setFilterData(filterSearchData);
+  };
+  useEffect(() => {
+    setFilterData(database);
+  }, [database]);
 
-  console.log(database);
-  const tableData = database?.map((data, index) => (
+  const tableData = filterData?.map((data, index) => (
     <tr key={data.id}>
       <td>{index + 1}</td>
       <td>{data.datasetName}</td>
@@ -39,14 +50,7 @@ export const FileManagement = () => {
         <AddDatabaseForm show={showModal} handleClose={handleCloseModal} />
       </div>
       <h1 className="text-start">Database List</h1>
-      <div className="my-3">
-        <input
-          type="text"
-          className="search form-control"
-          placeholder="Search database"
-          v-model="searchInput"
-        />
-      </div>
+      <SearchBox onSearch={handleSearch} />
       <div className="table-wrapper flex-grow-1 w-100 overflow-auto">
         <table className="table table-striped">
           <thead className="bg-white position-sticky top-0">
@@ -58,8 +62,11 @@ export const FileManagement = () => {
               <th>Actions</th>
             </tr>
           </thead>
-
-          <tbody className="tbody">{tableData}</tbody>
+          {filterData.length === 0 ? (
+            <div className="text-center text-primary">No records found</div>
+          ) : (
+            <tbody className="tbody">{tableData}</tbody>
+          )}
         </table>
       </div>
     </div>

@@ -11,19 +11,18 @@ const AddDatabaseForm = ({ show, handleClose }) => {
     datasetName: "",
     datasetDetails: "",
     date: formattedToday,
-    csvFile: "",
+    csvFile: {},
   };
 
   const validationSchema = Yup.object().shape({
     datasetName: Yup.string().required("Email is required"),
     datasetDetails: Yup.string().required("Password is required"),
-    csvFile: Yup.object()
-      .required("CSV file is required")
-      .test(
-        "fileType",
-        "Only CSV files are allowed",
-        (value) => value && value[0].type === "text/csv"
-      ),
+    csvFile: Yup.object().required("CSV file is required"),
+    // .test(
+    //   "fileType",
+    //   "Only CSV files are allowed",
+    //   (value) => value && value[0].type === "text/csv"
+    // ),
   });
   //   const initialValues = {
   //     databaseName: "",
@@ -130,6 +129,11 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                     name="csvFile"
                     accept=".csv"
                     onChange={handleFileUpload}
+                  />
+                  <ErrorMessage
+                    name="csvFile"
+                    component="div"
+                    className="error-message text-danger text-start"
                   />
                 </div>
                 <div>
