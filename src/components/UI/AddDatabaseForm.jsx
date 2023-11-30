@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { postDatabase } from "../../services/overlay/OverlayService";
-const AddDatabaseForm = ({ show, handleClose }) => {
+
+const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
   const today = new Date();
   const formattedToday = `${today.getFullYear()}-${String(
     today.getMonth() + 1
@@ -11,18 +12,15 @@ const AddDatabaseForm = ({ show, handleClose }) => {
     datasetName: "",
     datasetDetails: "",
     date: formattedToday,
-    csvFile: {},
+    csvFile: "",
   };
+
+  const [csvFileData, setCsvFileData] = useState();
 
   const validationSchema = Yup.object().shape({
     datasetName: Yup.string().required("Email is required"),
     datasetDetails: Yup.string().required("Password is required"),
-    csvFile: Yup.object().required("CSV file is required"),
-    // .test(
-    //   "fileType",
-    //   "Only CSV files are allowed",
-    //   (value) => value && value[0].type === "text/csv"
-    // ),
+    // csvFile: Yup.string().required("CSV file is required"),
   });
   //   const initialValues = {
   //     databaseName: "",
@@ -37,21 +35,20 @@ const AddDatabaseForm = ({ show, handleClose }) => {
   //   });
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
+    console.log(file);
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const csvContent = e.target.result;
-      console.log(csvContent);
-    };
     reader.readAsText(file);
+    reader.onload = (e) => {
+      setCsvFileData(e.target.result);
+      console.log(csvFileData);
+    };
   };
   // submit form values
-  const handleSubmit = (values) => {
-    console.log("In submit");
-    console.log(values);
-    // const data = {
-    //   ...values,
-    // };
-    postDatabase(values);
+  const handleSubmit = async (values) => {
+    console.log(csvFileData);
+    const data = { ...values, csvFile: csvFileData };
+    await postDatabase(data);
+    handlePostSuccess();
   };
   return (
     <div
@@ -123,7 +120,7 @@ const AddDatabaseForm = ({ show, handleClose }) => {
                   <label name="csvfile" className="mb-2 fw-bold">
                     Upload dataset .csv file
                   </label>
-                  <input
+                  <Field
                     type="file"
                     id="csvFile"
                     name="csvFile"

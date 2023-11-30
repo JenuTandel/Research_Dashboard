@@ -8,7 +8,11 @@ export const getDatabase = async () => {
 
 // to post database details
 export const postDatabase = async (database) => {
-  console.log("In database");
   const url = baseUrl + "databaseList";
   return await axios.post(url, database);
+};
+export const deleteDatabase = async (databaseId) => {
+  console.log(databaseId);
+  const url = `${baseUrl}databaseList/${databaseId}`;
+  return await axios.delete(url);
 };

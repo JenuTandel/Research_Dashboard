@@ -8,30 +8,23 @@
       "file": "sample"
     },
     {
-      "datasetName": "Sample",
+      "datasetName": "Dataset",
       "datasetDetails": "Sample",
-      "date": "2023-11-28",
-      "csvFile": "",
-      "id": 2
-    },
-    {
-      "datasetName": "Sample",
-      "datasetDetails": "Sample",
-      "date": "2023-11-29",
-      "csvFile": "",
+      "date": "2023-11-30",
+      "csvFile": {},
       "id": 3
     },
     {
-      "datasetName": "Database",
-      "datasetDetails": "Sample Database",
-      "date": "2023-11-29",
-      "csvFile": "",
+      "datasetName": "Sample Dataset",
+      "datasetDetails": "Dataset details for sample",
+      "date": "2023-11-30",
+      "csvFile": {},
       "id": 4
     },
     {
-      "datasetName": "Address",
-      "datasetDetails": "Sample Database of address",
-      "date": "2023-11-29",
+      "datasetName": "Sample",
+      "datasetDetails": "Dataset Details",
+      "date": "2023-11-30",
       "csvFile": {},
       "id": 5
     }
