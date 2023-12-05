@@ -44,11 +44,12 @@ const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
     };
   };
   // submit form values
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, formikProps) => {
     console.log(csvFileData);
     const data = { ...values, csvFile: csvFileData };
     await postDatabase(data);
     handlePostSuccess();
+    formikProps.resetForm({ values: initialValues });
   };
   return (
     <div
@@ -75,73 +76,75 @@ const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              <Form className="w-100 border border-1 rounded-2 p-4">
-                <div className="mb-4 ">
-                  {/* <label htmlFor="email" className='m-2'>Email</label> */}
-                  <Field
-                    type="text"
-                    id="datasetName"
-                    name="datasetName"
-                    className="form-control rounded-2 "
-                    placeholder="Dataset Name "
-                  />
+              {() => (
+                <Form className="w-100 border border-1 rounded-2 p-4">
+                  <div className="mb-4 ">
+                    {/* <label htmlFor="email" className='m-2'>Email</label> */}
+                    <Field
+                      type="text"
+                      id="datasetName"
+                      name="datasetName"
+                      className="form-control rounded-2 "
+                      placeholder="Dataset Name "
+                    />
 
-                  <ErrorMessage
-                    name="datasetName"
-                    component="div"
-                    className="error-message text-danger text-start"
-                  />
-                </div>
-                <div className="mb-4">
-                  {/* <label htmlFor="password" className='m-2'>Password</label> */}
+                    <ErrorMessage
+                      name="datasetName"
+                      component="div"
+                      className="error-message text-danger text-start"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    {/* <label htmlFor="password" className='m-2'>Password</label> */}
 
-                  <Field
-                    type="text"
-                    id="datasetDetails"
-                    name="datasetDetails"
-                    className="form-control rounded-2  "
-                    placeholder="Dataset Details"
-                  />
-                  <ErrorMessage
-                    name="datasetDetails"
-                    component="div"
-                    className="error-message text-danger text-start"
-                  />
-                </div>
-                <div className="mb-4 ">
-                  <Field
-                    type="date"
-                    className="form-control rounded-2"
-                    id="date"
-                    name="date"
-                  />
-                </div>
-                <div className="mb-4 text-start">
-                  <label name="csvfile" className="mb-2 fw-bold">
-                    Upload dataset .csv file
-                  </label>
-                  <Field
-                    type="file"
-                    id="csvFile"
-                    name="csvFile"
-                    accept=".csv"
-                    onChange={handleFileUpload}
-                  />
-                  <ErrorMessage
-                    name="csvFile"
-                    component="div"
-                    className="error-message text-danger text-start"
-                  />
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="bg-primary rounded-2 border-0 text-white py-2 px-4"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </Form>
+                    <Field
+                      type="text"
+                      id="datasetDetails"
+                      name="datasetDetails"
+                      className="form-control rounded-2  "
+                      placeholder="Dataset Details"
+                    />
+                    <ErrorMessage
+                      name="datasetDetails"
+                      component="div"
+                      className="error-message text-danger text-start"
+                    />
+                  </div>
+                  <div className="mb-4 ">
+                    <Field
+                      type="date"
+                      className="form-control rounded-2"
+                      id="date"
+                      name="date"
+                    />
+                  </div>
+                  <div className="mb-4 text-start">
+                    <label name="csvfile" className="mb-2 fw-bold">
+                      Upload dataset .csv file
+                    </label>
+                    <input
+                      type="file"
+                      id="csvFile"
+                      name="csvFile"
+                      accept=".csv"
+                      onChange={handleFileUpload}
+                    />
+                    <ErrorMessage
+                      name="csvFile"
+                      component="div"
+                      className="error-message text-danger text-start"
+                    />
+                  </div>
+                  <div>
+                    <button
+                      type="submit"
+                      className="bg-primary rounded-2 border-0 text-white py-2 px-4"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </Form>
+              )}
             </Formik>
           </div>
         </div>

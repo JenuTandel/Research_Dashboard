@@ -15,6 +15,7 @@ export const FileManagement = () => {
 
   const handlePostSuccess = () => {
     handleCloseModal();
+    setAlertDialog(false);
     fetchDataAfterPostSuccess();
   };
 
@@ -68,6 +69,7 @@ export const FileManagement = () => {
             show={showAlertDialog}
             handleClose={handleCloseAlert}
             id={data.id}
+            handlePostSuccess={handlePostSuccess}
           />
         )}
         <button type="button" className="btn btn-info">
