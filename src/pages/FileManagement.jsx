@@ -12,6 +12,7 @@ export const FileManagement = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAlertDialog, setAlertDialog] = useState(false);
   const [filterData, setFilterData] = useState();
+  const [editedData, setEditedData] = useState(null);
 
   const handlePostSuccess = () => {
     handleCloseModal();
@@ -46,6 +47,12 @@ export const FileManagement = () => {
     // deleteDatabase(id);
     // fetchDataAfterPostSuccess();
   };
+
+  const handleEdit = (data) => {
+    setEditedData(data);
+    setShowModal(true);
+  };
+
   const handleCloseAlert = () => setAlertDialog(false);
   const tableData = filterData?.map((data, index) => (
     <tr key={data.id}>
@@ -54,7 +61,11 @@ export const FileManagement = () => {
       <td>{data.datasetDetails}</td>
       <td>{data.date}</td>
       <td className="text-nowrap">
-        <button type="button" className="btn btn-success me-2">
+        <button
+          type="button"
+          className="btn btn-success me-2"
+          onClick={() => handleEdit(data)}
+        >
           Edit
         </button>
         <button
@@ -89,6 +100,7 @@ export const FileManagement = () => {
           show={showModal}
           handleClose={handleCloseModal}
           handlePostSuccess={handlePostSuccess}
+          editedData={editedData}
         />
       </div>
       <h1 className="text-start">Database List</h1>

@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { postDatabase } from "../../services/overlay/OverlayService";
 
-const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
+const AddDatabaseForm = ({
+  show,
+  handleClose,
+  handlePostSuccess,
+  editedData,
+}) => {
   const today = new Date();
   const formattedToday = `${today.getFullYear()}-${String(
     today.getMonth() + 1
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  const initialValues = {
+
+  const [initialValues, setInitialValues] = useState({
     datasetName: "",
     datasetDetails: "",
     date: formattedToday,
     csvFile: "",
-  };
+  });
+
+  useEffect(() => {
+    if (editedData) {
+      setInitialValues(editedData);
+      console.log(initialValues);
+    }
+  }, [editedData]);
 
   const [csvFileData, setCsvFileData] = useState();
 
@@ -22,17 +35,7 @@ const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
     datasetDetails: Yup.string().required("Password is required"),
     // csvFile: Yup.string().required("CSV file is required"),
   });
-  //   const initialValues = {
-  //     databaseName: "",
-  //     databaseDetails: "",
-  //     date: formattedToday, // Initialize date with today's date
-  //     csvFile: "",
-  //   };
-  //   const validationSchema = Yup.object().shape({
-  //     databaseName: Yup.string().required("Database Name is required"),
-  //     databaseDetails: Yup.string().required("Detail is required"),
-  //     csvFile: Yup.string().required("File is required"),
-  //   });
+
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     console.log(file);
@@ -75,6 +78,7 @@ const AddDatabaseForm = ({ show, handleClose, handlePostSuccess }) => {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
+              enableReinitialize={true}
             >
               {() => (
                 <Form className="w-100 border border-1 rounded-2 p-4">

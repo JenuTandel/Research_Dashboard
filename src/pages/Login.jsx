@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import backgroundImg from "../assets/images/back.jpg";
 
-const Registration = () => {
+const Login = () => {
   const initialValues = {
     email: "",
     password: "",
@@ -85,4 +85,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Login;

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import backgroundImg from "../assets/images/back1.jpg";
+import { useNavigate } from "react-router-dom";
+import { postUserData } from "../services/RegistrationService";
 
 const Registration = () => {
+  const navigate = useNavigate();
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -21,6 +24,25 @@ const Registration = () => {
       .required("Password is required"),
   });
 
+  const handleSubmit = async (values) => {
+    console.log(values);
+    await postUserData(values);
+    const username = generateUsername("jinal", "tandel");
+    console.log(username);
+    sendEmail("jinaltandel06@gmail.com", username, "username sent");
+    navigate("/login");
+  };
+
+  const generateUsername = (firstname, lastname) => {
+    const username = firstname + "." + lastname;
+    return username;
+  };
+
+  const sendEmail = (email, subject, content) => {
+    console.log(
+      `Sending email to ${email} with Subject: ${subject} \n Content: ${content}`
+    );
+  };
   return (
     <div className="row h-100 overflow-auto align-items-center">
       <div className="col-12 col-sm-6 gx-0 d-sm-block d-none h-100">
@@ -32,6 +54,7 @@ const Registration = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
+            onSubmit={handleSubmit}
           >
             <Form className="w-75 border border-1 rounded-2 p-4">
               <div className="mb-4 ">
